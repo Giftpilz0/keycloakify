@@ -1,0 +1,51 @@
+{
+    "name": "nixpi",
+    "version": "0.0.0",
+    "description": "Starter for Keycloakify 11",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/codegouvfr/keycloakify-starter.git"
+    },
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "build-keycloak-theme": "npm run build && keycloakify build",
+        "storybook": "storybook dev -p 6006",
+        "format": "prettier . --write"
+    },
+    "license": "MIT",
+    "keywords": [],
+    "dependencies": {
+        "@tailwindcss/vite": "^4.2.1",
+        "keycloakify": "^11.15.0",
+        "react": "^19.2.4",
+        "react-dom": "^19.2.4",
+        "tailwindcss": "^4.2.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@storybook/react": "^10.3.4",
+        "@storybook/react-vite": "^10.3.4",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "@typescript-eslint/eslint-plugin": "^8.15.0",
+        "@typescript-eslint/parser": "^8.15.0",
+        "@vitejs/plugin-react": "^6.0.1",
+        "eslint": "^10.2.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react": "^7.37.2",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "^0.5.2",
+        "eslint-plugin-storybook": "^10.3.4",
+        "globals": "^17.4.0",
+        "prettier": "3.9.6",
+        "storybook": "^10.3.4",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.15.0",
+        "vite": "^8.0.5"
+    },
+    "engines": {
+        "node": "^18.0.0 || >=20.0.0"
+    }
+}
