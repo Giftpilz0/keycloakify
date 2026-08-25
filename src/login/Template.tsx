@@ -202,9 +202,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             </div>
 
             {/* Footer */}
-            <footer className="w-full bg-white/80 backdrop-blur-md py-3 text-center text-xs text-gray-600 fixed bottom-0 border-t border-gray-200 z-20">
-                <div className="flex justify-center space-x-6 flex-wrap"></div>
-            </footer>
+            {/* <footer className="w-full bg-white/80 backdrop-blur-md py-3 text-center text-xs text-gray-600 fixed bottom-0 border-t border-gray-200 z-20"> */}
+            {/*     <div className="flex justify-center space-x-6 flex-wrap"></div> */}
+            {/* </footer> */}
         </div>
     );
 }
