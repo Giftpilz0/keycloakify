@@ -1,0 +1,28 @@
+{
+  "name": "nixpi",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build-keycloak-theme": "bun run build && keycloakify build",
+    "storybook": "storybook dev -p 6006"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "keycloakify": "^11.16.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "prettier": "3.9.10",
+    "storybook": "^10.6.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Verdana", "Helvetica", "Arial", sans-serif;
+  --color-brand: #00677f;
+  --color-brand-dark: #004f62;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-100 font-sans text-gray-900 antialiased;
+  }
+  a {
+    @apply text-brand hover:underline;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    @apply mr-2 accent-brand;
+  }
+  .required {
+    @apply ml-0.5 text-red-600;
+  }
+  /* Steps on the OTP setup page */
+  #kc-totp-settings {
+    @apply mb-4 list-decimal space-y-3 pl-5;
+  }
+  #kc-totp-settings ul {
+    @apply list-disc pl-5;
+  }
+}
+
+/* Icons for the class keys PatternFly would draw with Font Awesome */
+@utility icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+@utility icon-eye {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+@utility icon-eye-off {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M3 3l18 18'/%3E%3C/svg%3E");
+}
+@utility icon-chevron {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
+}
+@utility icon-key {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='8' cy='15' r='4'/%3E%3Cpath d='M11 12l9-9M17 6l3 3'/%3E%3C/svg%3E");
+}
+@utility icon-phone {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Crect x='7' y='2' width='10' height='20' rx='2'/%3E%3Cpath d='M11 18h2'/%3E%3C/svg%3E");
+}
+@utility icon-lock {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E");
+}
