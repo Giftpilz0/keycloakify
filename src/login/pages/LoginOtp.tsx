@@ -140,7 +140,7 @@ export default function LoginOtp(
                 aria-label={`${index + 1} / ${OTP_DIGITS}`}
                 aria-invalid={hasError}
                 aria-describedby={hasError ? "input-error-otp-code" : undefined}
-                className="size-12 rounded border border-gray-300 bg-white text-center text-xl outline-none focus:border-brand focus:ring-1 focus:ring-brand aria-invalid:border-red-500"
+                className="size-12 rounded-lg border border-white/10 bg-black/25 text-center text-xl text-white tabular-nums outline-none transition hover:border-white/20 focus:border-brand focus:ring-4 focus:ring-brand/15 aria-invalid:border-red-400"
                 value={code[index]?.trim() ?? ""}
                 onChange={(e) => enter(index, e.target.value)}
                 onKeyDown={(e) => onKeyDown(index, e)}

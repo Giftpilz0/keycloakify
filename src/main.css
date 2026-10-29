@@ -1,31 +1,92 @@
 @import "tailwindcss";
+@import "@fontsource-variable/fredoka";
 
 @theme {
-  --font-sans: "Verdana", "Helvetica", "Arial", sans-serif;
-  --color-brand: #00677f;
-  --color-brand-dark: #004f62;
+  --font-display: "Fredoka Variable", ui-rounded, system-ui, sans-serif;
+  /* Dark-mode logo colours: cyan accent, deep teal ink, night background */
+  --color-brand: #5cd5fb;
+  --color-brand-hover: #92e4fc;
+  --color-brand-ink: #003543;
+  --color-night: #0e1a1e;
+  --animate-rise: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
 }
 
 @layer base {
+  html {
+    color-scheme: dark;
+  }
   body {
-    @apply bg-gray-100 font-sans text-gray-900 antialiased;
+    @apply bg-night font-sans text-white/85 antialiased;
   }
   a {
-    @apply text-brand hover:underline;
+    @apply text-brand underline-offset-4 transition-colors hover:text-brand-hover hover:underline;
+  }
+  hr {
+    @apply border-white/10;
   }
   input[type="checkbox"],
   input[type="radio"] {
-    @apply mr-2 accent-brand;
+    @apply mr-2 size-4 align-[-2px] accent-brand;
   }
   .required {
-    @apply ml-0.5 text-red-600;
+    @apply ml-0.5 text-red-300;
   }
   /* Steps on the OTP setup page */
   #kc-totp-settings {
-    @apply mb-4 list-decimal space-y-3 pl-5;
+    @apply mb-6 list-decimal space-y-3 pl-5 text-sm text-white/75 marker:text-white/40;
   }
   #kc-totp-settings ul {
-    @apply list-disc pl-5;
+    @apply mt-1 list-disc pl-5;
+  }
+  #kc-totp-secret-key {
+    @apply inline-block rounded-md bg-black/30 px-2 py-1 font-mono text-xs break-all text-white/90;
+  }
+  #kc-totp-secret-qr-code {
+    @apply my-3 rounded-lg bg-white p-2;
+  }
+  /* Button rows on Keycloak's built-in pages: equal widths with a gap */
+  #kc-form-buttons,
+  .form-actions {
+    @apply flex flex-wrap gap-2;
+  }
+  #kc-form-buttons > :not([type="hidden"]),
+  .form-actions > * {
+    @apply flex-1;
+  }
+  /* delete-account-confirm offsets its cancel button with an inline style */
+  #kc-form-buttons > [style] {
+    margin-left: 0 !important;
+  }
+  /* webauthn pages put the cancel button in its own form after the main one */
+  #kc-webauthn-settings-form {
+    @apply mt-2;
+  }
+}
+
+/* Slowly drifting light over the background image */
+@utility aurora {
+  background:
+    radial-gradient(
+      40% 30% at 40% 22%,
+      rgb(92 213 251 / 0.16),
+      transparent 70%
+    ),
+    radial-gradient(35% 25% at 72% 30%, rgb(47 160 120 / 0.14), transparent 70%);
+  mix-blend-mode: screen;
+  animation: aurora 26s ease-in-out infinite alternate;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@keyframes aurora {
+  to {
+    transform: translate3d(6%, 3%, 0) scale(1.1);
   }
 }
 

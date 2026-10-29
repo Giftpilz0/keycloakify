@@ -7,6 +7,7 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
+import { Ambience } from "./Ambience";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 
@@ -52,27 +53,32 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <div
-      className="relative flex min-h-screen flex-col items-center justify-center bg-cover bg-center py-16"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-night bg-cover bg-center px-4 py-16"
       style={{ backgroundImage: `url(${asset("background.webp")})` }}
     >
+      <div
+        aria-hidden
+        className="aurora pointer-events-none fixed -inset-[10%]"
+      />
+      <Ambience />
       <LanguageMenu i18n={i18n} />
 
-      <main className="z-10 mx-4 w-full max-w-112.5 rounded-lg border border-white/50 bg-white/90 p-8 shadow-2xl backdrop-blur-md">
-        <header className="mb-6 text-center">
+      <main className="z-10 w-full max-w-md animate-rise rounded-2xl border border-white/10 bg-night/55 p-8 shadow-[0_30px_80px_-20px_rgb(0_0_0/0.7)] ring-1 ring-white/5 ring-inset backdrop-blur-2xl backdrop-saturate-150 motion-reduce:animate-none sm:p-10">
+        <header className="mb-8 text-center">
           <img
-            src={asset("logo.svg")}
+            src={asset("logo-dark-mode.svg")}
             alt="nixpi"
-            className="mx-auto mb-4 h-24 object-contain"
+            className="mx-auto mb-6 h-14 object-contain"
           />
           {displayRequiredFields && (
-            <p className="mb-2 text-right text-xs text-gray-500">
-              <span className="mr-1 text-red-600">*</span>
+            <p className="mb-2 text-right text-xs text-white/45">
+              <span className="mr-1 text-red-300">*</span>
               {msg("requiredFields")}
             </p>
           )}
           {showUsername ? (
-            <div>
-              <p className="font-medium text-gray-700">
+            <div className="flex flex-col items-center gap-2">
+              <p className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-medium text-white/90">
                 {auth.attemptedUsername}
               </p>
               <a href={url.loginRestartFlowUrl} className="text-sm">
@@ -80,7 +86,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
               </a>
             </div>
           ) : (
-            <h1 className="text-2xl font-light text-gray-800">{headerNode}</h1>
+            <h1 className="font-display text-2xl font-semibold tracking-tight text-balance text-white">
+              {headerNode}
+            </h1>
           )}
         </header>
 
@@ -90,15 +98,15 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div
               role="alert"
               className={clsx(
-                "mb-4 rounded border-l-4 p-4 text-sm shadow-sm",
+                "mb-6 rounded-lg border px-4 py-3 text-sm",
                 message.type === "error" &&
-                  "border-red-500 bg-red-50 text-red-700",
+                  "border-red-400/30 bg-red-500/10 text-red-200",
                 message.type === "success" &&
-                  "border-green-500 bg-green-50 text-green-700",
+                  "border-emerald-400/30 bg-emerald-500/10 text-emerald-200",
                 message.type === "warning" &&
-                  "border-yellow-500 bg-yellow-50 text-yellow-700",
+                  "border-amber-400/30 bg-amber-500/10 text-amber-200",
                 message.type === "info" &&
-                  "border-blue-500 bg-blue-50 text-blue-700",
+                  "border-sky-400/30 bg-sky-500/10 text-sky-200",
               )}
               dangerouslySetInnerHTML={{ __html: kcSanitize(message.summary) }}
             />
@@ -126,7 +134,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         {socialProvidersNode}
 
         {displayInfo && (
-          <div className="mt-4 border-t border-gray-200 pt-4 text-center text-sm text-gray-600">
+          <div className="mt-6 border-t border-white/10 pt-5 text-center text-sm text-white/55">
             {infoNode}
           </div>
         )}
@@ -169,7 +177,7 @@ function LanguageMenu({ i18n }: { i18n: I18n }) {
         aria-haspopup="menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex cursor-pointer items-center gap-1 rounded bg-black/30 px-3 py-1 text-sm text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+        className="flex cursor-pointer items-center gap-1 rounded-full border border-white/10 bg-night/40 px-3.5 py-1.5 text-sm text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white"
       >
         {currentLanguage.label}
         <span
@@ -183,14 +191,14 @@ function LanguageMenu({ i18n }: { i18n: I18n }) {
       {isOpen && (
         <ul
           role="menu"
-          className="absolute right-0 mt-1 w-36 overflow-hidden rounded bg-white text-left shadow-lg"
+          className="absolute right-0 mt-2 max-h-[min(24rem,calc(100dvh-5rem))] w-44 overflow-y-auto overscroll-contain rounded-xl border border-white/10 bg-night/90 p-1 text-left shadow-xl [scrollbar-color:rgb(255_255_255/0.2)_transparent] [scrollbar-width:thin] backdrop-blur-xl"
         >
           {enabledLanguages.map(({ languageTag, label, href }) => (
             <li key={languageTag} role="none">
               <a
                 role="menuitem"
                 href={href}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:no-underline"
+                className="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white hover:no-underline"
               >
                 {label}
               </a>
